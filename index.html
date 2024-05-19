@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background: green;
+        padding: 50px;
+        border-radius: 20px;
+        border: solid rgb(237, 206, 8) 10px;
+      }
+      form input {
+        width: 500px;
+        height: 40px;
+        border: solid rgb(237, 206, 8) 5px;
+        border-radius: 10px;
+        outline: none;
+        padding: 0 10px;
+      }
+      button {
+        width: 200px;
+        padding: 10px 0;
+        border: solid rgb(237, 206, 8) 5px;
+        background: transparent;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+      }
+      #result {
+        color: green;
+        background: #fff;
+        padding: 10px 30px;
+        border-radius: 20px;
+        border: solid 5px rgb(237, 206, 8);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="sumForm">
+      <input
+        class="input1"
+        type="number"
+        name="number1"
+        placeholder="Please Enter Your Number!"
+      />
+      <input
+        class="input2"
+        type="number"
+        name="number2"
+        placeholder="Please Enter Your Number!"
+      />
+      <input
+        class="input3"
+        type="number"
+        name="number3"
+        placeholder="Please Enter Your Number!"
+      />
+      <button type="submit">Sum</button>
+      <div id="result"></div>
+    </form>
+
+    <script>
+      const form = document.getElementById("sumForm");
+      const button = form.querySelector("button");
+      const resultDiv = document.getElementById("result");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (button.textContent === "Sum") {
+          const inputs = form.querySelectorAll("input");
+          let sum = 0;
+          inputs.forEach((input) => {
+            sum += parseFloat(input.value) || 0;
+          });
+
+          const input1 = document.querySelector(".input1").value;
+          const input2 = document.querySelector(".input2").value;
+          const input3 = document.querySelector(".input3").value;
+
+          resultDiv.innerHTML = `<h3>Sum: ${input1} + ${input2} + ${input3} = ${sum}</h3>`;
+          inputs.forEach((input) => {
+            input.value = "";
+          });
+          button.textContent = "Clear Answer";
+        } else {
+          resultDiv.textContent = "";
+          button.textContent = "Sum";
+        }
+      });
+    </script>
+  </body>
+</html>
