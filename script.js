@@ -1,24 +1,28 @@
-const sum_salary = [
-    {
-        id: 1,name: 'Sokheng',salary: 300,age: 19
-    },
-    {
-        id: 1, name: 'Thearith',salary: 400,age: 18
-    },
-    {
-        id: 1,name: 'Kimhong',salary: 600,age: 17
-    },
-    {
-        id: 1,name: 'Phanha',salary: 700,age: 20
-    },
-    {
-        id: 1,name: 'sara',salary: 300,age: 21
-    },
-]
+const form = document.getElementById("sumForm");
+      const button = form.querySelector("button");
+      const resultDiv = document.getElementById("result");
 
-const map = sum_salary.map((item)=>{
-    return `<h1 class="h1">$${item.salary}${" "}${item.name}</h1>`;
-})
-maps = map.join("");
-document.body.innerHTML = maps;
-console.log(map.join(""));
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (button.textContent === "Sum") {
+          const inputs = form.querySelectorAll("input");
+          let sum = 0;
+          inputs.forEach((input) => {
+            sum += parseFloat(input.value) || 0;
+          });
+
+          const input1 = document.querySelector(".input1").value;
+          const input2 = document.querySelector(".input2").value;
+          const input3 = document.querySelector(".input3").value;
+
+          resultDiv.innerHTML = `<h3>Sum: ${input1} + ${input2} + ${input3} = ${sum}</h3>`;
+          inputs.forEach((input) => {
+            input.value = "";
+          });
+          button.textContent = "Clear Answer";
+        } else {
+          resultDiv.textContent = "";
+          button.textContent = "Sum";
+        }
+      });
